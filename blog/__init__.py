@@ -46,4 +46,5 @@ def create_app():
 
 def database(app):
     if not path.exists('blog/database.sqlite3'):
-        db.create_all(app=app)
+        with app.app_context():
+            db.create_all()
