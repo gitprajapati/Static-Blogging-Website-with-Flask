@@ -14,7 +14,7 @@ def create_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
 
-    UPLOAD_FOLDER = app.root_path+'static\\'
+    UPLOAD_FOLDER = app.root_path+'tmp\\'+'static\\'
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
     @app.errorhandler(404)
@@ -45,6 +45,6 @@ def create_app():
 
 
 def database(app):
-    if not path.exists('blog/database.sqlite3'):
+    if not path.exists('tmp/blog/database.sqlite3'):
         with app.app_context():
             db.create_all()
