@@ -8,6 +8,8 @@ from werkzeug.utils import secure_filename
 from flask import current_app as app
 import uuid
 from sqlalchemy import update
+import cloudinary.uploader
+
 auth = Blueprint('auth', __name__)
 
 
@@ -51,20 +53,14 @@ def sign_up():
         username = request.form['username']
         profile_pic = request.files['profile_pic']
 
-        if profile_pic:
-
-            profile_pic_name = secure_filename(profile_pic.filename)
-            pic_name = str(uuid.uuid1())+"__" + profile_pic_name
-            upload_folder = app.config['UPLOAD_FOLDER']
-            upload_path = os.path.join(upload_folder, pic_name)
         
-            # Ensure the upload directory exists
-            os.makedirs(upload_folder, exist_ok=True)
-        
-            # Save the profile picture
-            profile_pic.save(upload_path)
+    
+    if profile_pic:
+        profile_pic_name = secure_filename(profile_pic.filename)
+        pic_name = str(uuid.uuid1())+"__" + profile_pic_name
+        upload_result = cloudinary.uploader.upload(pic_name)
+        pic_name = upload_result['secure_url']
         else:
-            print(app.root_path)
             pic_name = ""
 
         user = User.query.filter_by(email=email).first()
