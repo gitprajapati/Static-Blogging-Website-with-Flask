@@ -55,7 +55,7 @@ def sign_up():
 
             profile_pic_name = secure_filename(profile_pic.filename)
             pic_name = str(uuid.uuid1())+"__" + profile_pic_name
-            upload_folder = current_app.config['UPLOAD_FOLDER']
+            upload_folder = app.config['UPLOAD_FOLDER']
             upload_path = os.path.join(upload_folder, pic_name)
         
             # Ensure the upload directory exists
