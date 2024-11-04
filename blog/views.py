@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, flash, url_for, redirect
 from flask_login import login_required, current_user
+from flask import current_app as app
 import os
 from werkzeug.utils import secure_filename
 from flask import current_app as app
@@ -15,6 +16,7 @@ views = Blueprint('views', __name__)
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
+    print(app.root_path)
     users = User.query
     users = users.order_by(func.random()).limit(3)
 
