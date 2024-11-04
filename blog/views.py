@@ -8,6 +8,7 @@ import uuid
 from . import db
 from sqlalchemy import func
 from .models import Post, User, Follow, Comment, Like
+import cloudinary.uploader
 import csv
 
 views = Blueprint('views', __name__)
@@ -74,16 +75,12 @@ def new_post():
         poster = current_user.id
 
         if blog_pic:
-
-            blog_pic_name = secure_filename(blog_pic.filename)
-            blog_picture_name = str(uuid.uuid1())+"__" + blog_pic_name
-            blog_pic.save(os.path.join(
-                app.root_path, 'static\\blog_pics', blog_picture_name))
-
+            upload_result = cloudinary.uploader.upload(blog_pic)
+            blog_picture_url = upload_result['secure_url']
         else:
-            blog_picture_name = ""
+            blog_picture_url = ""
         new_post = Post(title=blog_title,
-                        description=blog_description, image=blog_picture_name, poster_id=poster)
+                        description=blog_description, image=blog_picture_url, poster_id=poster)
         db.session.add(new_post)
         db.session.commit()
         flash('Your post has been created.', category='success')
@@ -101,15 +98,11 @@ def update_post(postid, username):
             post.blog_pic = request.files['blog_pic']
 
             if post.blog_pic:
-
-                blog_pic_name = secure_filename(post.blog_pic.filename)
-                blog_picture_name = str(uuid.uuid1())+"__" + blog_pic_name
-                post.blog_pic.save(os.path.join(
-                    app.root_path, 'static\\blog_pics', blog_picture_name))
-
+                upload_result = cloudinary.uploader.upload(post.blog_pic)
+                blog_picture_url = upload_result['secure_url']
             else:
-                blog_picture_name = ""
-            post.image = blog_picture_name
+                blog_picture_url = ""
+            post.image = blog_picture_url
             post.title = request.form.get('blog_title', post.title)
             post.description = request.form.get(
                 'blog_description', post.description)
