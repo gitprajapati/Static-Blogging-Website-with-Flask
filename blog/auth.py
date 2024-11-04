@@ -55,8 +55,8 @@ def sign_up():
 
             profile_pic_name = secure_filename(profile_pic.filename)
             pic_name = str(uuid.uuid1())+"__" + profile_pic_name
-            profile_pic.save(os.path.join(
-                app.root_path, 'static\\profile_pics', pic_name))
+            upload_path = os.path.join(app.config['UPLOAD_FOLDER'], pic_name)
+            profile_pic.save(upload_path)
 
         else:
             print(app.root_path)
