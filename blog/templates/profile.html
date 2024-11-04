@@ -282,7 +282,7 @@
                     <div class="card mb-5 shadow-sm">
                       {% if post.image %}
                       <img
-                        src="{{ url_for('static', filename = 'blog_pics/' + post.image) }}"
+                        src="{{ post.image }}"
                         class="img-fluid"
                         style="object-fit: cover; width: auto; height: 300px"
                       />{% else %}<img
