@@ -58,8 +58,8 @@ def sign_up():
     if profile_pic:
         upload_result = cloudinary.uploader.upload(profile_pic)
         pic_name = upload_result['secure_url']
-        else:
-            pic_name = ""
+    else:
+        pic_name = ""
 
         user = User.query.filter_by(email=email).first()
         usrname = User.query.filter_by(username=username).first()
