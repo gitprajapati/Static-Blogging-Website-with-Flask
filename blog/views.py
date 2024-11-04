@@ -254,5 +254,5 @@ def export_data(postid, username):
     csvwriter.writerow([person.first_name, person.username,
                         person.email, post.title, post.description, l_count, c_count])
     f.close()
-    flash('Data has been exported successfully in "blog\static\downloaded_blogs" folder with title name', category='success')
+    flash('Data has been exported successfully in "blog/static/downloaded_blogs" folder with title name', category='success')
     return redirect(url_for('views.posts', postid=postid, username=username))
