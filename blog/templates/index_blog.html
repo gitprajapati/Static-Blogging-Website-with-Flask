@@ -207,7 +207,7 @@
             >
               {% if post.image %}
               <img
-                src="{{ url_for('static', filename = 'blog_pics/' + post.image) }}"
+                src="{{ post.image }}"
                 class="img-fluid img-thumbnail"
                 style="object-fit: cover; width: auto; height: 300px"
               />

@@ -223,13 +223,15 @@
               method="POST"
               action="/post/{{post.id}},{{post.user.username}}/export"
             >
-              <a href="/post/{{post.id}},{{post.user.username}}/export"><button type="button" class="btn btn-dark float-end">
-                Export Data
-              </button></a>
+              <a href="/post/{{post.id}},{{post.user.username}}/export"
+                ><button type="button" class="btn btn-dark float-end">
+                  Export Data
+                </button></a
+              >
             </form>
             {% if post.image %}
             <img
-              src="{{ url_for('static', filename = 'blog_pics/' + post.image) }}"
+              src="{{ post.image }}"
               class="img-fluid"
               style="object-fit: contain; width: auto; height: 500px"
             />{% else %}
