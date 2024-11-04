@@ -9,7 +9,7 @@
 # def create_app():
 #     app = Flask(__name__)
 #     app.config['SECRET_KEY'] = 'TOPsecretcadewgtrrjuuyjkimujadadadfagfagAGAGDFvafaFARFACSDVaferFasfFvaFVAf'
-#     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.sqlite3'
+#     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://mc53hg:xau_YTFlUsuUiX79ccvVTVxNH6IQZOZUsIKb3@us-east-1.sql.xata.sh/static_blog:main?sslmode=require'
 #     app.config['SECURITY_PASSWORD_SALT'] = "kjcfslijfcklsejfisjfisejfvilesjfivhsefuhseiflakjcflajdliajfcisjvkdmbkdjg8eutigfvniLIDJAFJSILVJ"
 #     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #     db.init_app(app)
