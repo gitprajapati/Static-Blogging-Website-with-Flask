@@ -111,7 +111,14 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+import cloudinary
 import os
+CLOUDINARY_URL = os.environ.get("CLOUDINARY_URL",'cloudinary://323444372682838:eJgagmKY-msCHsPDNen9NsaEP4I@dyqtvfh5a')
+cloudinary.config(
+cloud_name=os.getenv('CLOUD_NAME','dyqtvfh5a'),
+api_key=os.getenv('CLOUD_API_KEY','323444372682838'),
+api_secret=os.getenv('CLOUD_API_SECRET','eJgagmKY-msCHsPDNen9NsaEP4I')
+)
 
 db = SQLAlchemy()
 
@@ -124,10 +131,10 @@ def create_app():
     # Use PostgreSQL URI
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://mc53hg:xau_YTFlUsuUiX79ccvVTVxNH6IQZOZUsIKb3@us-east-1.sql.xata.sh/static_blog:main?sslmode=require'
     
-    # Set instance path to /tmp to avoid write issues
-    app.instance_path = '/tmp'
-    UPLOAD_FOLDER = '/tmp/static/'  # Ensure uploads are stored in a writable location
-    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+    # # Set instance path to /tmp to avoid write issues
+    # app.instance_path = '/tmp'
+    # UPLOAD_FOLDER = '/tmp/static/'  # Ensure uploads are stored in a writable location
+    # app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     
     db.init_app(app)
 
