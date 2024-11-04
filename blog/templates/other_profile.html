@@ -154,10 +154,15 @@
                 <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px">
                   {% if user.profile_pic %}
                   <img
-                    src="{{profile_image}}"
+                    src="{{ profile_image }}"
                     alt="Generic placeholder image"
                     class="img-fluid img-thumbnail mt-4 mb-3"
-                    style="width: auto; z-index: 1; height: 200px; object-fit: cover;"
+                    style="
+                      width: auto;
+                      z-index: 1;
+                      height: 200px;
+                      object-fit: cover;
+                    "
                   />
                   {% else %}
                   <img
@@ -257,7 +262,7 @@
                     <div class="card mb-5 shadow-sm">
                       {% if post.image %}
                       <img
-                        src="{{ url_for('static', filename = 'blog_pics/' + post.image) }}"
+                        src="{{ post.image }}"
                         class="img-fluid"
                         style="object-fit: cover; width: auto; height: 300px"
                       />{% else %}
