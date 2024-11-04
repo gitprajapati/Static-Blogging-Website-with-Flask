@@ -59,6 +59,7 @@ def sign_up():
                 app.root_path, 'static\\profile_pics', pic_name))
 
         else:
+            print(app.root_path)
             pic_name = ""
 
         user = User.query.filter_by(email=email).first()
