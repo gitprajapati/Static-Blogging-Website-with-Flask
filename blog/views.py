@@ -30,7 +30,9 @@ def home():
 @login_required
 def profile():
     users = User.query.all()
-    profile_image = url_for(app.config['UPLOAD_FOLDER'] + current_user.profile_pic)
+    # profile_image = url_for(app.config['UPLOAD_FOLDER'] + current_user.profile_pic)
+    profile_image = f"/{app.config['UPLOAD_FOLDER']}/{current_user.profile_pic}"
+
 
     posts = current_user.posts
     count = 0
