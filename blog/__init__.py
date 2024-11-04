@@ -131,10 +131,10 @@ def create_app():
     # Use PostgreSQL URI
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://mc53hg:xau_YTFlUsuUiX79ccvVTVxNH6IQZOZUsIKb3@us-east-1.sql.xata.sh/static_blog:main?sslmode=require'
     
-    # # Set instance path to /tmp to avoid write issues
-    # app.instance_path = '/tmp'
-    # UPLOAD_FOLDER = '/tmp/static/'  # Ensure uploads are stored in a writable location
-    # app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+    # Set instance path to /tmp to avoid write issues
+    app.instance_path = '/tmp'
+    UPLOAD_FOLDER = '/tmp/static/'  # Ensure uploads are stored in a writable location
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     
     db.init_app(app)
 
