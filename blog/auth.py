@@ -56,9 +56,7 @@ def sign_up():
         
     
     if profile_pic:
-        profile_pic_name = secure_filename(profile_pic.filename)
-        pic_name = str(uuid.uuid1())+"__" + profile_pic_name
-        upload_result = cloudinary.uploader.upload(pic_name)
+        upload_result = cloudinary.uploader.upload(profile_pic)
         pic_name = upload_result['secure_url']
         else:
             pic_name = ""
