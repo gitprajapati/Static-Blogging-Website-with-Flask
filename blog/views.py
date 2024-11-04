@@ -16,7 +16,7 @@ views = Blueprint('views', __name__)
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
-    print(app.config['UPLOAD_FOLDER'])
+    
     users = User.query
     users = users.order_by(func.random()).limit(3)
 
@@ -30,8 +30,7 @@ def home():
 @login_required
 def profile():
     users = User.query.all()
-    profile_image = url_for('static',
-                            filename='profile_pics/' + current_user.profile_pic)
+    profile_image = url_for(app.config['UPLOAD_FOLDER'] + current_user.profile_pic)
 
     posts = current_user.posts
     count = 0
