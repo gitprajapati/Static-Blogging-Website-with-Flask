@@ -16,7 +16,7 @@ views = Blueprint('views', __name__)
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
-    print(app.root_path)
+    print(app.config['UPLOAD_FOLDER'])
     users = User.query
     users = users.order_by(func.random()).limit(3)
 
