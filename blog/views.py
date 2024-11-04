@@ -31,7 +31,7 @@ def home():
 def profile():
     users = User.query.all()
     # profile_image = url_for(app.config['UPLOAD_FOLDER'] + current_user.profile_pic)
-    profile_image = f"/{app.config['UPLOAD_FOLDER']}/{current_user.profile_pic}"
+    profile_image = current_user.profile_pic
 
 
     posts = current_user.posts
@@ -56,8 +56,7 @@ def other_profile(username):
         count = 0
         for post in posts:
             count += 1
-        profile_image = url_for('static',
-                                filename='profile_pics/' + user.profile_pic)
+        profile_image = user.profile_pic
 
         posts = user.posts
         return render_template("other_profile.html", users=users, follows_user=follows_user, user=user, count=count, posts=posts, profile_image=profile_image)
@@ -248,7 +247,7 @@ def export_data(postid, username):
     post_title = post.title
     person = User.query.filter_by(username=username).first_or_404()
     f = open(os.path.join(
-        app.root_path, 'static\\downloaded_blogs\\' + post_title + '.csv'), 'w')
+        app.config['UPLOAD_FOLDER'] , post_title + '.csv'), 'w')
     csvwriter = csv.writer(f)
     csvwriter.writerow(["First name", "Username", "email id",
                         "Post Title", "Post Caption", "Like Count", "Comment Count"])
